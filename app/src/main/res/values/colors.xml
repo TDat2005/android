@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="button_dark_background">#2C3E50</color>
+    <color name="text_green">#1ABC9C</color>
+
+    <!-- MÀU MỚI CHO NÚT LOGIN -->
+    <color name="login_button_blue">#29B6F6</color>
+
+    <!-- Các màu mới cho theme -->
+    <color name="brown">#8D6E63</color>
+    <color name="dark_brown">#5D4037</color>
+    <color name="orange">#FF9800</color>
+    <color name="dark_orange">#F57C00</color>
+    <color name="background_color">#F5F5F5</color>
+</resources>

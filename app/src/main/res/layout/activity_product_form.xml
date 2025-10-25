@@ -1,0 +1,14 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16dp" android:fillViewport="true">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText android:id="@+id/edtName" android:hint="Tên sản phẩm" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/edtPrice" android:hint="Giá" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/edtImage" android:hint="Image URL (tuỳ chọn)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/edtDesc" android:hint="Mô tả" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/edtCategory" android:hint="Danh mục" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/edtStock" android:hint="Tồn kho" android:inputType="number" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave" android:text="Lưu"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp"/>
+    </LinearLayout>
+</ScrollView>

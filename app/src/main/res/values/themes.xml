@@ -1,0 +1,42 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Style gốc của ứng dụng (Giữ nguyên) -->
+    <style name="Base.Theme.CoffeeApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/brown</item>
+        <item name="colorPrimaryVariant">@color/dark_brown</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondaryVariant">@color/dark_orange</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor">@color/background_color</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.CoffeeApp" parent="Base.Theme.CoffeeApp" />
+
+    <!-- Style cho các nút Category (Giữ nguyên) -->
+    <style name="CategoryButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:textColor">#2F2D2C</item>
+        <item name="android:backgroundTint">#F5F5F5</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <style name="CategoryButton.Selected" parent="CategoryButton">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:backgroundTint">#C67C4E</item>
+    </style>
+
+    <!-- =================== STYLE MỚI ĐƯỢC THÊM VÀO =================== -->
+    <!-- Style này dùng riêng cho các ô nhập liệu ở màn hình Login -->
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/login_text_input_box_stroke</item>
+        <item name="hintTextColor">#808080</item>
+        <item name="startIconTint">#424242</item>
+        <item name="passwordToggleTint">#424242</item>
+    </style>
+    <!-- =============================================================== -->
+
+</resources>
