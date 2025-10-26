@@ -41,7 +41,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
 
         holder.tvName.setText(product.getTitle());
         // Chuẩn hóa định dạng tiền tệ sang Đô la Mỹ ($) cho đồng bộ
-        holder.tvPrice.setText(String.format(Locale.US, "$%.2f", product.getPrice()));
+        holder.tvPrice.setText(MoneyUtils.vnd(product.getPrice()));
+
 
         Glide.with(context).load(product.getImage()).into(holder.ivImage);
 

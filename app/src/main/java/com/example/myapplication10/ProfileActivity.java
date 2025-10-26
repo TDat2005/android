@@ -25,6 +25,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        findViewById(R.id.cardFeedback).setOnClickListener(v -> sendFeedbackEmail());
 
         sessionManager = new SessionManager(this);
         findViewById(R.id.cardOrderHistory).setOnClickListener(v -> {
@@ -73,6 +74,49 @@ public class ProfileActivity extends AppCompatActivity {
             finish();
         });
     }
+    private String getAppVersion() {
+        try {
+            var pm = getPackageManager();
+            var pi = pm.getPackageInfo(getPackageName(), 0);
+            String vName = pi.versionName == null ? "1.0" : pi.versionName;
+            long vCode = (android.os.Build.VERSION.SDK_INT >= 28) ? pi.getLongVersionCode() : pi.versionCode;
+            return vName + " (" + vCode + ")";
+        } catch (Exception e) {
+            return "unknown";
+        }
+    }
+
+    private void sendFeedbackEmail() {
+        SessionManager sm = new SessionManager(this);
+        String userEmail = sm.getEmail();   // hoặc getUsername()
+
+        String subject = "Feedback ứng dụng – " + getAppVersion();
+        String body =
+                "Xin chào,\n\n" +
+                        "Mình muốn góp ý như sau:\n" +
+                        "(Nhập nội dung ở đây...)\n\n" +
+                        "---- Thông tin tự động ----\n" +
+                        "User: " + (userEmail == null ? "Ẩn danh" : userEmail) + "\n" +
+                        "Version: " + getAppVersion() + "\n" +
+                        "Device: " + android.os.Build.MANUFACTURER + " " + android.os.Build.MODEL + "\n" +
+                        "SDK: " + android.os.Build.VERSION.SDK_INT + "\n";
+
+        android.content.Intent i = new android.content.Intent(android.content.Intent.ACTION_SENDTO);
+        i.setData(android.net.Uri.parse("mailto:")); // để chỉ hiện app email
+        i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"vsvcxd@gmail.com"}); // TODO: đổi email nhận
+        i.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+        i.putExtra(android.content.Intent.EXTRA_TEXT, body);
+
+        try {
+            startActivity(android.content.Intent.createChooser(i, "Gửi feedback bằng..."));
+        } catch (Exception e) {
+            // Không có app email → copy nội dung vào clipboard
+            android.content.ClipboardManager cm = (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            cm.setPrimaryClip(android.content.ClipData.newPlainText("Feedback", body));
+            android.widget.Toast.makeText(this, "Không có ứng dụng Email. Nội dung đã copy, bạn hãy gửi tay.", android.widget.Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     // ============= Đổi mật khẩu =============
     private void showChangePasswordSheet() {

@@ -18,10 +18,10 @@
             android:layout_height="0dp"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintDimensionRatio="1:1.1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintDimensionRatio="1:1.1" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- TÊN -->
         <TextView
@@ -29,13 +29,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:textStyle="bold"
-            android:textSize="20sp"
             android:textColor="#2F2D2C"
-            tools:text="iPhone 15"
-            app:layout_constraintTop_toBottomOf="@id/iv_product_image_detail"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/iv_product_image_detail"
+            tools:text="iPhone 15" />
 
         <!-- DANH MỤC -->
         <TextView
@@ -43,33 +43,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textSize="14sp"
             android:textColor="#9B9B9B"
-            tools:text="Điện Thoại"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title_detail"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            tools:text="Điện thoại" />
 
-        <!-- GIÁ -->
-        <TextView
-            android:id="@+id/tv_price_detail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:textColor="#C67C4E"
-            tools:text="$999.00"
-            app:layout_constraintTop_toBottomOf="@id/tv_category_detail"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_add_to_cart_detail" />
-
-        <!-- NÚT THÊM GIỎ -->
+        <!-- NÚT THÊM GIỎ (bên phải) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_add_to_cart_detail"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="12dp"
+            android:contentDescription="Thêm vào giỏ"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
@@ -79,9 +66,43 @@
             app:icon="@drawable/ic_add"
             app:iconSize="20dp"
             app:iconPadding="0dp"
-            app:layout_constraintTop_toTopOf="@id/tv_price_detail"
-            app:layout_constraintBottom_toBottomOf="@id/tv_price_detail"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_category_detail"
+            app:layout_constraintBottom_toBottomOf="@id/tv_price_detail" />
+
+        <!-- NÚT YÊU THÍCH (đứng trước nút giỏ) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_favorite_detail"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="Yêu thích"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:backgroundTint="@android:color/transparent"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_favorite_border"
+            app:iconSize="20dp"
+            app:iconPadding="0dp"
+            app:layout_constraintEnd_toStartOf="@id/btn_add_to_cart_detail"
+            app:layout_constraintTop_toTopOf="@id/btn_add_to_cart_detail"
+            app:layout_constraintBottom_toBottomOf="@id/btn_add_to_cart_detail" />
+
+        <!-- GIÁ (trái), giãn đến trước nút yêu thích -->
+        <TextView
+            android:id="@+id/tv_price_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="#C67C4E"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/btn_favorite_detail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_category_detail"
+            tools:text="6.225.000 ₫" />
 
         <!-- MÔ TẢ -->
         <TextView
@@ -90,14 +111,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
-            android:textSize="15sp"
             android:lineSpacingExtra="2dp"
             android:textColor="#444444"
-            tools:text="Flagship 2024 với chip A16, màn OLED siêu đẹp, camera cải tiến..."
-            app:layout_constraintTop_toBottomOf="@id/tv_price_detail"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_price_detail"
+            tools:text="Flagship 2024 với chip mạnh, màn hình đẹp…" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

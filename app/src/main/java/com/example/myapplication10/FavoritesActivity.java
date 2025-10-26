@@ -23,7 +23,8 @@ public class FavoritesActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Lấy danh sách sản phẩm từ FavoritesManager
-        favoriteProducts = FavoritesManager.getInstance().getFavoriteProducts();
+        favoriteProducts = FavoritesManager.getInstance(this).getFavorites();
+
 
         // Thiết lập RecyclerView
         binding.rvFavorites.setLayoutManager(new LinearLayoutManager(this));

@@ -36,7 +36,7 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.VH> {
     public void onBindViewHolder(@NonNull VH h, int pos) {
         Order o = data.get(pos);
         h.tvId.setText("Mã hóa đơn: " + o.getOrderId());
-        h.tvTotal.setText(String.format(Locale.US, "$%.2f", o.getTotalAmount()));
+        h.tvTotal.setText(MoneyUtils.vnd(o.getTotalAmount()));
         h.tvDate.setText("Ngày: " + new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
                 .format(o.getDate()));
         h.itemView.setOnClickListener(v -> listener.onInvoiceClick(o));
