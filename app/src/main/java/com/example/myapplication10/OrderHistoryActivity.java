@@ -22,20 +22,17 @@ public class OrderHistoryActivity extends AppCompatActivity {
         binding = ActivityOrderHistoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Thiết lập RecyclerView một lần
         binding.rvOrderHistory.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    // =================== THÊM onResume ĐỂ TỰ ĐỘNG CẬP NHẬT ===================
     @Override
     protected void onResume() {
         super.onResume();
-        // Tải lại danh sách đơn hàng mỗi khi màn hình này được hiển thị
         loadAndDisplayOrders();
     }
 
     private void loadAndDisplayOrders() {
-        orderHistory = OrderManager.getInstance(this).getOrderList();
+        orderHistory = OrderManager.getInstance(this).getAllOrders();
 
         if (orderHistory == null || orderHistory.isEmpty()) {
             binding.rvOrderHistory.setVisibility(View.GONE);
@@ -44,9 +41,12 @@ public class OrderHistoryActivity extends AppCompatActivity {
             binding.rvOrderHistory.setVisibility(View.VISIBLE);
             binding.tvNoOrders.setVisibility(View.GONE);
 
-            adapter = new OrderHistoryAdapter(this, orderHistory);
-            binding.rvOrderHistory.setAdapter(adapter);
+            if (adapter == null) {
+                adapter = new OrderHistoryAdapter(this, orderHistory);
+                binding.rvOrderHistory.setAdapter(adapter);
+            } else {
+                adapter.update(orderHistory);   // thêm hàm update(list) trong adapter nếu chưa có
+            }
         }
     }
-    // =======================================================================
 }

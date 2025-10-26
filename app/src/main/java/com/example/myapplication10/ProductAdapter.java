@@ -40,8 +40,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         holder.tvProductName.setText(product.getTitle());
         holder.tvProductDescription.setText(product.getCategory());
-        String formattedPrice = String.format(Locale.US, "$%.2f", product.getPrice());
-        holder.tvProductPrice.setText(formattedPrice);
+        // ✅ Định dạng giá theo tiền Việt Nam
+        holder.tvProductPrice.setText(MoneyUtils.vnd(product.getPrice()));
 
         // ----- LOAD ẢNH TỪ drawable THEO TÊN -----
         String imgName = product.getImage(); // ví dụ "iphone15"

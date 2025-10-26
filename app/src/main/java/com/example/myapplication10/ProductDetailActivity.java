@@ -35,7 +35,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         // Texts
         binding.tvTitleDetail.setText(product.getTitle());
         binding.tvCategoryDetail.setText(product.getCategory());
-        binding.tvPriceDetail.setText(String.format(Locale.US, "$%.2f", product.getPrice()));
+        binding.tvPriceDetail.setText(MoneyUtils.vnd(product.getPrice()));
         binding.tvDescDetail.setText(product.getDescription());
 
         // Image from drawable name (e.g., "iphone15")

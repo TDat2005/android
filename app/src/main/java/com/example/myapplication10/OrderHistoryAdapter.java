@@ -43,7 +43,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
         holder.tvOrderId.setText(order.getOrderId());
         holder.tvOrderDate.setText(formattedDate); // Sử dụng ngày đã được định dạng
-        holder.tvTotalAmount.setText(String.format(Locale.US, "$%.2f", order.getTotalPrice()));
+        holder.tvTotalAmount.setText(MoneyUtils.vnd(order.getTotalPrice()));
         // =================================================================
 
         // =================== THÊM CHỨC NĂNG XEM CHI TIẾT ===================
@@ -71,4 +71,9 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             tvTotalAmount = itemView.findViewById(R.id.tv_total_amount);
         }
     }
+    public void update(List<Order> newOrders) {
+        this.orderList = newOrders;
+        notifyDataSetChanged();
+    }
+
 }

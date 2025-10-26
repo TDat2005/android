@@ -7,6 +7,7 @@
     android:padding="16dp"
     tools:context=".PurchaseActivity">
 
+    <!-- Tiêu đề -->
     <TextView
         android:id="@+id/tv_purchase_title"
         android:layout_width="wrap_content"
@@ -19,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- User Information -->
+    <!-- Thông tin người dùng -->
     <TextView
         android:id="@+id/tv_user_info_label"
         android:layout_width="wrap_content"
@@ -87,7 +88,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="$690.99" />
 
-    <!-- Payment Method -->
+    <!-- Phương thức thanh toán -->
     <TextView
         android:id="@+id/tv_payment_method_label"
         android:layout_width="wrap_content"
@@ -129,6 +130,7 @@
             android:text="Visa Card" />
     </RadioGroup>
 
+    <!-- Nút xác nhận -->
     <Button
         android:id="@+id/btn_confirm_purchase"
         android:layout_width="0dp"

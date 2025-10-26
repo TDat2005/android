@@ -37,6 +37,9 @@
         <activity android:name=".PurchaseActivity" android:exported="false" />
         <activity android:name=".OrderHistoryActivity" android:exported="false" />
         <activity android:name=".OrderDetailActivity" android:exported="false" />
+        <activity android:name=".AddressListActivity"  android:exported="false" />
+        <activity android:name=".OrderInvoiceActivity" android:exported="false" />
+        <activity android:name=".InvoiceHistoryActivity" android:exported="false"/>
 
     </application>
 

@@ -113,14 +113,120 @@ public class HomeActivity extends AppCompatActivity {
     // ---- NEW: seed vài sản phẩm nếu DB trống (tuỳ chọn) ----
     private void seedIfEmpty() {
         if (productManager.getAll().isEmpty()) {
-            productManager.insert("iPhone 15", 999.0, "iphone15", "Flagship 2024", "Dien Thoai");
-            productManager.insert("Galaxy S24", 899.0, "galaxy_s24", "Android cao cấp", "Dien Thoai");
-            productManager.insert("MacBook Air M2", 1199.0, "macbook_air_m2", "Mỏng nhẹ, pin trâu", "May Tinh");
-            productManager.insert("ThinkPad X1", 1399.0, "thinkpad_x1", "Bền, gõ sướng", "May Tinh");
-            productManager.insert("AirPods Pro 2", 249.0, "airpods_pro_2", "Chống ồn chủ động", "TW");
-            productManager.insert("Logitech MX Master 3S", 119.0, "mx_master_3s", "Chuột productivity", "TW");
+            productManager.insert(
+                    "iPhone 15",
+                    24975000,
+                    "iphone15",
+                    "Chiếc flagship mới nhất của Apple, sở hữu chip A16 Bionic mạnh mẽ, camera nâng cấp vượt trội và thiết kế sang trọng. Lý tưởng cho người yêu công nghệ và hiệu năng cao.",
+                    "Dien Thoai"
+            );
+
+            productManager.insert(
+                    "Galaxy S24",
+                    22475000,
+                    "galaxy_s24",
+                    "Smartphone cao cấp từ Samsung với màn hình Dynamic AMOLED 2X, chip Snapdragon Gen 3 mạnh mẽ và cụm camera chụp đêm ấn tượng.",
+                    "Dien Thoai"
+            );
+
+            productManager.insert(
+                    "MacBook Air M2",
+                    29975000,
+                    "macbook_air_m2",
+                    "Laptop mỏng nhẹ, chip Apple M2 mạnh mẽ, pin tới 18 giờ. Thiết kế sang trọng, hoàn hảo cho học tập, công việc và sáng tạo.",
+                    "May Tinh"
+            );
+
+            productManager.insert(
+                    "ThinkPad X1 Carbon Gen 11",
+                    34975000,
+                    "thinkpad_x1",
+                    "Dòng laptop doanh nhân huyền thoại: bền bỉ, hiệu suất cao, bàn phím gõ cực sướng và thân máy siêu nhẹ carbon fiber.",
+                    "May Tinh"
+            );
+
+            productManager.insert(
+                    "AirPods Pro 2",
+                    6225000,
+                    "airpods_pro_2",
+                    "Tai nghe không dây cao cấp với công nghệ chống ồn chủ động, âm thanh sống động và khả năng kết nối mượt mà trong hệ sinh thái Apple.",
+                    "TW"
+            );
+
+            productManager.insert(
+                    "Logitech MX Master 3S",
+                    2975000,
+                    "mx_master_3s",
+                    "Chuột không dây cao cấp cho dân văn phòng & designer, thiết kế công thái học, cuộn siêu mượt, điều khiển đa thiết bị tiện lợi.",
+                    "TW"
+            );
+
+            productManager.insert(
+                    "iPad Pro M4",
+                    32475000,
+                    "ipad_pro_m4",
+                    "Tablet mạnh nhất hiện nay của Apple, chip M4 hiệu năng vượt trội, màn hình Liquid Retina XDR, hỗ trợ Apple Pencil thế hệ mới.",
+                    "May Tinh"
+            );
+
+            productManager.insert(
+                    "Apple Watch Ultra 2",
+                    19975000,
+                    "apple_watch_ultra_2",
+                    "Đồng hồ thông minh cao cấp bằng titan, pin 36 giờ, GPS chính xác, khả năng chịu nước 100m — hoàn hảo cho thể thao và khám phá.",
+                    "TW"
+            );
+
+            productManager.insert(
+                    "Sony WH-1000XM5",
+                    9475000,
+                    "sony_wh_1000xm5",
+                    "Tai nghe chống ồn hàng đầu của Sony, âm thanh trung thực, pin 30 giờ, mic AI lọc tạp âm — lý tưởng cho làm việc và du lịch.",
+                    "TW"
+            );
+
+            productManager.insert(
+                    "Asus ROG Zephyrus G14",
+                    39975000,
+                    "rog_g14",
+                    "Laptop gaming siêu nhỏ gọn nhưng cực mạnh, card RTX, màn hình 165Hz và tản nhiệt tiên tiến. Dành cho game thủ chuyên nghiệp.",
+                    "May Tinh"
+            );
+
+            productManager.insert(
+                    "Google Pixel 8 Pro",
+                    24975000,
+                    "pixel_8_pro",
+                    "Flagship Google với chip Tensor G3, camera AI đỉnh cao, tối ưu Android gốc mượt mà. Hoàn hảo cho người yêu nhiếp ảnh và AI.",
+                    "Dien Thoai"
+            );
+
+            productManager.insert(
+                    "Nintendo Switch OLED",
+                    8725000,
+                    "switch_oled",
+                    "Máy chơi game cầm tay hoặc kết nối TV, màn hình OLED rực rỡ, loa cải tiến — giải trí đỉnh cao cho mọi lứa tuổi.",
+                    "TW"
+            );
+
+            productManager.insert(
+                    "Dyson Supersonic Hair Dryer",
+                    10725000,
+                    "dyson_dryer",
+                    "Máy sấy tóc cao cấp Dyson, công nghệ đo nhiệt thông minh bảo vệ tóc khỏi hư tổn, sấy nhanh, êm và cực kỳ sang trọng.",
+                    "TW"
+            );
+
+            productManager.insert(
+                    "Amazon Echo Dot 5",
+                    1475000,
+                    "echo_dot_5",
+                    "Loa thông minh nhỏ gọn tích hợp Alexa, điều khiển thiết bị nhà thông minh, nghe nhạc, đặt báo thức bằng giọng nói.",
+                    "TW"
+            );
         }
-    }
+
+}
 
 
 

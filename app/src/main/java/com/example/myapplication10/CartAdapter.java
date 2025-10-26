@@ -37,23 +37,29 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         CartItem cartItem = cartItemList.get(position);
         Product product = cartItem.getProduct();
+
         holder.tvName.setText(product.getTitle());
 
-        // =================== PHẦN ĐƯỢC SỬA ===================
-        holder.tvPrice.setText(String.format(Locale.US, "$%.2f", product.getPrice()));
-        // =====================================================
+        // Giá theo VND
+        holder.tvPrice.setText(MoneyUtils.vnd(product.getPrice()));
 
         holder.tvQuantity.setText(String.valueOf(cartItem.getQuantity()));
+
         Glide.with(context)
                 .load(product.getImage())
                 .into(holder.ivImage);
+
         holder.btnPlus.setOnClickListener(v -> {
             CartManager.getInstance().increaseQuantity(cartItem);
+            notifyItemChanged(holder.getAdapterPosition()); // cập nhật lại item
         });
+
         holder.btnMinus.setOnClickListener(v -> {
             CartManager.getInstance().decreaseQuantity(cartItem);
+            notifyItemChanged(holder.getAdapterPosition()); // cập nhật lại item
         });
     }
+
 
     @Override
     public int getItemCount() {

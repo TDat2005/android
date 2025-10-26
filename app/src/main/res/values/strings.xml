@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">My Application10</string>
+    <string name="label_no_address">Chưa chọn địa chỉ giao hàng</string>
+    <string name="address_title">Địa chỉ giao hàng</string>
+    <string name="save">Lưu</string>
+
+            <string name="add_address_title">Thêm địa chỉ giao hàng</string>
+            <string name="full_name_required">Họ và tên (*)</string>
+            <string name="phone_required">Điện thoại (*)</string>
+            <string name="line1_required">Số nhà, đường (*)</string>
+            <string name="city_label">Tỉnh/Thành phố</string>
+            <string name="district_label">Quận/Huyện</string>
+            <string name="ward_label">Xã/Phường</string>
+            <string name="cancel">Hủy</string>
+            <string name="add">Thêm</string>
+
 </resources>

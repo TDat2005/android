@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderManager {
-    private static OrderManager instance;
-    private List<Order> orderList;
-    private SharedPreferences sharedPreferences;
-    private Gson gson;
 
     private static final String PREF_NAME = "OrderHistory";
     private static final String KEY_ORDERS = "orders";
+
+    private static OrderManager instance;
+    private SharedPreferences sharedPreferences;
+    private Gson gson;
+    private List<Order> orderList;
 
     private OrderManager(Context context) {
         sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -32,40 +33,53 @@ public class OrderManager {
         return instance;
     }
 
-    public List<Order> getOrderList() {
+    // ================== LẤY TOÀN BỘ ĐƠN HÀNG ==================
+    public List<Order> getAllOrders() {
+        if (orderList == null) {
+            loadOrders();
+        }
         return orderList;
     }
 
+    // ================== THÊM MỚI MỘT ĐƠN HÀNG ==================
     public void addOrder(Order order) {
-        orderList.add(0, order);
+        if (orderList == null) {
+            orderList = new ArrayList<>();
+        }
+        orderList.add(0, order); // Thêm đơn mới lên đầu danh sách
         saveOrders();
     }
 
-    // =================== HÀM MỚI ĐỂ XÓA ĐƠN HÀNG ===================
+    // ================== XÓA ĐƠN HÀNG THEO ID ==================
     public void removeOrder(String orderId) {
-        if (orderId == null || orderList == null) {
-            return; // Kiểm tra an toàn
-        }
-        // Sử dụng removeIf để xóa đơn hàng có ID trùng khớp
+        if (orderId == null || orderList == null) return;
         boolean removed = orderList.removeIf(order -> orderId.equals(order.getOrderId()));
         if (removed) {
-            saveOrders(); // Nếu xóa thành công, lưu lại danh sách mới
+            saveOrders();
         }
     }
-    // ===============================================================
 
-    private void saveOrders() {
-        String jsonOrders = gson.toJson(orderList);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(KEY_ORDERS, jsonOrders);
-        editor.apply();
+    // ================== TÌM ĐƠN HÀNG THEO ID ==================
+    public Order getOrderById(String orderId) {
+        if (orderId == null || orderList == null) return null;
+        for (Order order : orderList) {
+            if (orderId.equals(order.getOrderId())) return order;
+        }
+        return null;
     }
 
+    // ================== LƯU DỮ LIỆU ==================
+    private void saveOrders() {
+        String json = gson.toJson(orderList);
+        sharedPreferences.edit().putString(KEY_ORDERS, json).apply();
+    }
+
+    // ================== TẢI DỮ LIỆU ==================
     private void loadOrders() {
-        String jsonOrders = sharedPreferences.getString(KEY_ORDERS, null);
-        if (jsonOrders != null) {
+        String json = sharedPreferences.getString(KEY_ORDERS, null);
+        if (json != null) {
             Type type = new TypeToken<ArrayList<Order>>() {}.getType();
-            orderList = gson.fromJson(jsonOrders, type);
+            orderList = gson.fromJson(json, type);
         } else {
             orderList = new ArrayList<>();
         }

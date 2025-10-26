@@ -17,6 +17,7 @@ import java.util.UUID;
 public class PurchaseActivity extends AppCompatActivity {
 
     private ActivityPurchaseBinding binding;
+
     private SessionManager sessionManager;
     private double totalAmount;
 
@@ -26,56 +27,55 @@ public class PurchaseActivity extends AppCompatActivity {
         binding = ActivityPurchaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // --- Init ---
         sessionManager = new SessionManager(this);
         totalAmount = getIntent().getDoubleExtra("TOTAL_AMOUNT", 0.0);
 
-        // Hiển thị thông tin
-        String username = sessionManager.getUsername();
-        String email = sessionManager.getEmail(); // Lấy email thật từ SessionManager
-        binding.tvNameValue.setText(username);
-        binding.tvEmailValue.setText(email); // Hiển thị email thật
+        // --- Hiển thị thông tin người dùng + số tiền ---
+        binding.tvNameValue.setText(sessionManager.getUsername());
+        binding.tvEmailValue.setText(sessionManager.getEmail());
+        binding.tvAmountValue.setText(MoneyUtils.vnd(totalAmount));
 
-        binding.tvAmountValue.setText(String.format(Locale.US, "$%.2f", totalAmount));
 
-        // Xử lý nút xác nhận
+
+        // --- Xác nhận đặt hàng ---
         binding.btnConfirmPurchase.setOnClickListener(v -> showConfirmationDialog());
     }
+
+    // ========================= CHECKOUT =========================
 
     private void showConfirmationDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Xác nhận Thanh toán")
                 .setMessage("Bạn có chắc chắn muốn hoàn tất đơn hàng này không?")
-                .setPositiveButton("Xác nhận", (dialog, which) -> {
-                    processOrder();
-                })
+                .setPositiveButton("Xác nhận", (dialog, which) -> processOrder())
                 .setNegativeButton("Hủy", null)
                 .show();
     }
 
-    // =================== HÀM ĐƯỢC SỬA LỖI ===================
     private void processOrder() {
-        // 1. Tạo một đơn hàng mới
+        // 1) Tạo đơn hàng mới
         String orderId = UUID.randomUUID().toString().substring(0, 8);
-        // Lấy thời gian hiện tại dưới dạng long (miliseconds)
         long orderDateTimestamp = System.currentTimeMillis();
-        // Lấy danh sách sản phẩm từ giỏ hàng
         List<CartItem> orderedItems = new ArrayList<>(CartManager.getInstance().getCartItems());
 
-        // Tạo đối tượng Order với đúng kiểu dữ liệu
         Order newOrder = new Order(orderId, orderDateTimestamp, totalAmount, orderedItems);
-
-        // 2. Thêm đơn hàng vào lịch sử
         OrderManager.getInstance(this).addOrder(newOrder);
-
-        // 3. Xóa giỏ hàng hiện tại
         CartManager.getInstance().clearCart();
 
-        // 4. Hiển thị thông báo thành công và quay về Home
-        Toast.makeText(this, "Thanh toán thành công! Đơn hàng của bạn đang được xử lý.", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        // 2) Chuyển sang màn hóa đơn chi tiết
+        Intent intent = new Intent(this, OrderInvoiceActivity.class);
+        intent.putExtra("ORDER_ID", orderId);
+        intent.putExtra("TOTAL_AMOUNT", totalAmount);
+
+        // Lấy thông tin người dùng từ SessionManager (đỡ cần currentAddress)
+        intent.putExtra("NAME", sessionManager.getUsername());
+        intent.putExtra("PHONE", sessionManager.getEmail()); // có thể thay = số điện thoại nếu có
+        intent.putExtra("ADDRESS", "Không có địa chỉ cụ thể"); // hoặc để trống nếu chưa có DB địa chỉ
+
         startActivity(intent);
         finish();
     }
-    // ==========================================================
+
+
 }

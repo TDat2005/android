@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Pune, Maharashtra"
+                    android:text="Triều Khúc, Thanh Xuân"
                     android:textColor="#000000"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -60,7 +60,7 @@
                     android:background="@drawable/search_background"
                     android:drawableStart="@drawable/ic_search"
                     android:drawablePadding="12dp"
-                    android:hint="Search “coffee”"
+                    android:hint="Search “Xiaomi”"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     app:layout_constraintEnd_toStartOf="@+id/btn_filter"
@@ -148,28 +148,28 @@
                             style="@style/CategoryButton.Selected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="All Menu" />
+                            android:text="Tất cả" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_cat_coffee"
                             style="@style/CategoryButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Coffee" />
+                            android:text="Điện thoại" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_cat_beer"
                             style="@style/CategoryButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Clothes" />
+                            android:text="Máy tính" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_cat_wine"
                             style="@style/CategoryButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Jewelry" />
+                            android:text="Khác" />
                     </LinearLayout>
                 </HorizontalScrollView>
 
